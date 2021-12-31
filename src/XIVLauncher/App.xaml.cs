@@ -37,7 +37,9 @@ namespace XIVLauncher
 
         public App()
         {
-            RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
+            // wine does not support WPF with HW rendering, so switch to software only mode
+            if ( EnvironmentSettings.IsWine )
+                RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
 
             // TODO: Use a real command line parser
             foreach (var arg in Environment.GetCommandLineArgs())
